@@ -3,7 +3,7 @@
 
 #define QUEUE "queue"
 #define STACK "stack"
-#define TOKDEL "\t\n "
+#define TOKDEL "\n \r\t"
 
 #include <stdlib.h>
 #include <stdio.h>

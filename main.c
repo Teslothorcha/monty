@@ -49,12 +49,12 @@ void tokenizer(char *m_code, unsigned int line_number, stack_t **head)
 	int n_num = 0;
 
 	mc_token = strtok(m_code, TOKDEL);
-	if (strcmp(mc_token, QUEUE) == 0)
+	if (mc_token && strcmp(mc_token, QUEUE) == 0)
 	{
 		status = 1;
 		mc_token = strtok(NULL, TOKDEL);
 	}
-	else if (strcmp(mc_token, STACK) == 0)
+	else if (mc_token && strcmp(mc_token, STACK) == 0)
 	{
 		status = 0;
 		mc_token = strtok(NULL, TOKDEL);
@@ -90,9 +90,9 @@ int check_integer(char *m_code, unsigned int l_n)
 {
 	int count = 0;
 
-	if (m_code[count] == '-')
+	if (m_code && m_code[count] == '-')
 		count++;
-	while (m_code[count] != '\0')
+	while (m_code && m_code[count] != '\0')
 	{
 		if (isdigit(m_code[count]) == 0)
 		{
@@ -100,6 +100,11 @@ int check_integer(char *m_code, unsigned int l_n)
 			exit(EXIT_FAILURE);
 		}
 		count++;
+	}
+	if(!m_code)
+	{
+		fprintf(stderr, "L%u: usage: push integer\n", l_n);
+		exit(EXIT_FAILURE);
 	}
 	return (1);
 }
