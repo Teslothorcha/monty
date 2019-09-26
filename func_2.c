@@ -19,3 +19,31 @@ void mop_pop(stack_t **head, unsigned int line_number)
 	free(*head);
 	*head = aux;
 }
+/**
+ *mop_swap - swap top two elements of the stack
+ *@head: head of the stack
+ *@line_number: number where command is for possible error mesasge
+ */
+void mop_swap(stack_t **head, unsigned int l_n)
+{
+	stack_t *aux;
+	int count = 0, to_a = 0, to_b = 0;
+
+	aux = *head;
+	while(aux)
+	{
+		aux = aux->next;
+		count++;
+	}
+	if (count < 2)
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short", l_n);
+		exit(EXIT_FAILURE);
+	}
+	aux = *head;
+	aux = aux->next;
+	to_b = (*head)->n;
+	to_a = aux->n;
+	aux->n = to_b;
+	(*head)->n = to_a;
+}
