@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 	free(m_code);
 	freezer(&head);
 	fclose(f_);
-	return (0);
+	exit(EXIT_SUCCESS);
 }
 /**
  *tokenizer - get tokens from file line
