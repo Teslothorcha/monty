@@ -126,7 +126,11 @@ int check_integer(stack_t **head, unsigned int l_n, char *m_code, FILE *f_)
 void s_func(unsigned int l_n, stack_t **head)
 {
 	int count = 0;
-	instruction_t m_opcodes[] = { {"pall", mop_pall}, {NULL, NULL} };
+	instruction_t m_opcodes[] = {
+		{"pall", mop_pall},
+		{"pint", mop_pint},
+		{NULL, NULL}
+	};
 
 
 	while (m_opcodes[count].opcode != NULL)

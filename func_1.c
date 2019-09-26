@@ -12,7 +12,7 @@ void push_stack(stack_t **head, int num)
 	new = malloc(sizeof(stack_t));
 	if (!new)
 	{
-		printf("Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	new->n = num;
@@ -78,4 +78,18 @@ void freezer(stack_t **head)
 		free(*head);
 		*head = aux;
 	}
+}
+/**
+ *mop_pint - prints number of stack top
+ *@head: head of the stack
+ *@line_number: number where command is for possible error mesasge
+ */
+void mop_pint(stack_t **head, unsigned int line_number)
+{
+	if (*head == NULL)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", (*head)->n);
 }
