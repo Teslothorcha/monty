@@ -45,8 +45,8 @@ typedef struct instruction_s
 
 /* main.c */
 int main(int argc, char *argv[]);
-int check_integer(unsigned int l_n);
-void tokenizer(char *m_code, unsigned int line_number, stack_t **head);
+int check_integer(stack_t **head, unsigned int l_n, char *m_code, FILE *f_);
+void tokenizer(char *m_code, unsigned int l_n, stack_t **head, FILE *f_);
 void push_stack(stack_t **head, int num);
 void push_queue(stack_t **head, int num);
 void s_func(unsigned int l_n, stack_t **head);

@@ -8,42 +8,43 @@ char *mc_token;
  */
 int main(int argc, char *argv[])
 {
-	FILE *file_;
+	FILE *f_;
 	size_t sizze;
 	stack_t *head = NULL;
 	char *m_code = NULL;
 	unsigned int line_number = 0;
 
-	file_ = fopen(argv[1], "r");
+	f_ = fopen(argv[1], "r");
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 
-	if (!(file_) || file_ == NULL)
+	if (!(f_) || f_ == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	while ((getline(&m_code, &sizze, file_)) != EOF)
+	while ((getline(&m_code, &sizze, f_)) != EOF)
 	{
 		line_number++;
-		tokenizer(m_code, line_number, &head);
+		tokenizer(m_code, line_number, &head, f_);
 	}
 	free(m_code);
 	freezer(&head);
-	fclose(file_);
+	fclose(f_);
 	return (0);
 }
 /**
  *tokenizer - get tokens from file line
  *@m_code: line of the document to get token from
- *@line_number: number of the line where the token belongs
+ *@l_n: number of the line where the token belongs
  *@head: head of the stack
+ *@f_: file descriptor to close
  *
  */
-void tokenizer(char *m_code, unsigned int line_number, stack_t **head)
+void tokenizer(char *m_code, unsigned int l_n, stack_t **head, FILE *f_)
 {
 	int status = 0;
 	int n_num = 0;
@@ -52,19 +53,19 @@ void tokenizer(char *m_code, unsigned int line_number, stack_t **head)
 	if (mc_token && strcmp(mc_token, QUEUE) == 0)
 	{
 		status = 1;
-		mc_token = strtok(NULL, TOKDEL);
+		mc_token = NULL;
 	}
 	else if (mc_token && strcmp(mc_token, STACK) == 0)
 	{
 		status = 0;
-		mc_token = strtok(NULL, TOKDEL);
+		mc_token = NULL;
 	}
 	while (mc_token)
 	{
 		if (strcmp(mc_token, "push") == 0)
 		{
 			mc_token = strtok(NULL, TOKDEL);
-			if (check_integer(line_number))
+			if (check_integer(head, l_n, m_code, f_))
 			{
 				n_num = atoi(mc_token);
 				if (status == 0)
@@ -76,18 +77,21 @@ void tokenizer(char *m_code, unsigned int line_number, stack_t **head)
 		}
 		else
 		{
-			s_func(line_number, head);
+			s_func(l_n, head);
 			mc_token = NULL;
 		}
 	}
 }
 /**
  *check_integer - checks if arg for push is an integer
+ *@head: head of the stack
  *@l_n: number of the commmand for possible error
+ *@m_code: line from file to free if necesary
+ *@f_: file descriptor to close
  *Return: 1 if str is number 0 if not
  *
  */
-int check_integer(unsigned int l_n)
+int check_integer(stack_t **head, unsigned int l_n, char *m_code, FILE *f_)
 {
 	int count = 0;
 
@@ -98,6 +102,9 @@ int check_integer(unsigned int l_n)
 		if (isdigit(mc_token[count]) == 0)
 		{
 			fprintf(stderr, "L%u: usage: push integer\n", l_n);
+			freezer(head);
+			free(m_code);
+			fclose(f_);
 			exit(EXIT_FAILURE);
 		}
 		count++;
@@ -105,6 +112,9 @@ int check_integer(unsigned int l_n)
 	if (!mc_token)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", l_n);
+		freezer(head);
+		free(m_code);
+		fclose(f_);
 		exit(EXIT_FAILURE);
 	}
 	return (1);
