@@ -101,7 +101,7 @@ int check_integer(char *m_code, unsigned int l_n)
 		}
 		count++;
 	}
-	if(!m_code)
+	if (!m_code)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", l_n);
 		exit(EXIT_FAILURE);
