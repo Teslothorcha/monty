@@ -62,9 +62,8 @@ void mop_pall(stack_t **head, unsigned int line_number)
 	}
 }
 /**
- *mop_pall - prints number of stack nodes
+ *freezer - free a stack
  *@head: head of the stack
- *@line_number: number where command is for possible error mesasge
  */
 void freezer(stack_t **head)
 {
