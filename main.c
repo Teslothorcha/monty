@@ -90,7 +90,7 @@ int check_integer(char *m_code, unsigned int l_n)
 {
 	int count = 0;
 
-	if (m_code && m_code[count] == '-')
+	if (m_code && (m_code[count] == '-' ||  m_code[count] == '+'))
 		count++;
 	while (m_code && m_code[count] != '\0')
 	{
