@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 
 	if (!(file_) || file_ == NULL)
 	{
-		fprintf(stderr, "Error: Can't open file %s", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	while ((getline(&m_code, &sizze, file_)) != EOF)
@@ -96,7 +96,7 @@ int check_integer(char *m_code, unsigned int l_n)
 	{
 		if (isdigit(m_code[count]) == 0)
 		{
-			fprintf(stderr, "L%u: usage: push integer", l_n);
+			fprintf(stderr, "L%u: usage: push integer\n", l_n);
 			exit(EXIT_FAILURE);
 		}
 		count++;
