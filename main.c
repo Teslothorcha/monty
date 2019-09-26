@@ -129,6 +129,7 @@ void s_func(unsigned int l_n, stack_t **head)
 	instruction_t m_opcodes[] = {
 		{"pall", mop_pall},
 		{"pint", mop_pint},
+		{"pop", mop_pop},
 		{NULL, NULL}
 	};
 
