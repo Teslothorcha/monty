@@ -37,7 +37,7 @@ void mop_swap(stack_t **head, unsigned int l_n)
 	}
 	if (count < 2)
 	{
-		fprintf(stderr, "L%d: can't swap, stack too short", l_n);
+		fprintf(stderr, "L%d: can't swap, stack too short\n", l_n);
 		exit(EXIT_FAILURE);
 	}
 	aux = *head;
