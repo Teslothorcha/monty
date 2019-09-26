@@ -142,6 +142,6 @@ void s_func(unsigned int l_n, stack_t **head)
 		}
 		count++;
 	}
-	printf("L%d: unknown instruction %s\n", l_n, mc_token);
+	fprintf(stderr, "L%d: unknown instruction %s\n", l_n, mc_token);
 	exit(EXIT_FAILURE);
 }
