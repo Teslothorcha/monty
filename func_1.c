@@ -1,4 +1,5 @@
 #include "monty.h"
+char *mc_token;
 /**
  *push_stack - adds a node to the stack
  *@head: head of the stack
@@ -60,6 +61,7 @@ void mop_pall(stack_t **head, unsigned int line_number)
 		printf("%d\n", aux->n);
 		aux = aux->next;
 	}
+	mc_token = NULL;
 }
 /**
  *freezer - free a stack

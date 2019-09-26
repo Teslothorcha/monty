@@ -10,6 +10,8 @@
 #include <ctype.h>
 #include <string.h>
 
+extern char *mc_token;
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -40,13 +42,14 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+
 /* main.c */
 int main(int argc, char *argv[]);
-int check_integer(char *m_code, unsigned int l_n);
+int check_integer(unsigned int l_n);
 void tokenizer(char *m_code, unsigned int line_number, stack_t **head);
 void push_stack(stack_t **head, int num);
 void push_queue(stack_t **head, int num);
-void s_func(char *mc_token, unsigned int l_n, stack_t **head);
+void s_func(unsigned int l_n, stack_t **head);
 void mop_pall(stack_t **head, unsigned int line_number);
 void freezer(stack_t **head);
 

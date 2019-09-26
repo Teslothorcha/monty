@@ -1,4 +1,5 @@
 #include "monty.h"
+char *mc_token;
 /**
  *main - This is the main function to read monty opcode
  *@argc: number of arguments (File) to read
@@ -44,7 +45,6 @@ int main(int argc, char *argv[])
  */
 void tokenizer(char *m_code, unsigned int line_number, stack_t **head)
 {
-	char *mc_token = NULL;
 	int status = 0;
 	int n_num = 0;
 
@@ -64,7 +64,7 @@ void tokenizer(char *m_code, unsigned int line_number, stack_t **head)
 		if (strcmp(mc_token, "push") == 0)
 		{
 			mc_token = strtok(NULL, TOKDEL);
-			if (check_integer(mc_token, line_number))
+			if (check_integer(line_number))
 			{
 				n_num = atoi(mc_token);
 				if (status == 0)
@@ -72,36 +72,37 @@ void tokenizer(char *m_code, unsigned int line_number, stack_t **head)
 				else if (status == 1)
 					push_queue(head, n_num);
 			}
-			mc_token = strtok(NULL, TOKDEL);
+			mc_token = NULL;
 		}
 		else
-			s_func(mc_token, line_number, head);
-			mc_token = strtok(NULL, TOKDEL);
+		{
+			s_func(line_number, head);
+			mc_token = NULL;
+		}
 	}
 }
 /**
  *check_integer - checks if arg for push is an integer
- *@m_code: string token to be verfifed
  *@l_n: number of the commmand for possible error
  *Return: 1 if str is number 0 if not
  *
  */
-int check_integer(char *m_code, unsigned int l_n)
+int check_integer(unsigned int l_n)
 {
 	int count = 0;
 
-	if (m_code && (m_code[count] == '-' ||  m_code[count] == '+'))
+	if (mc_token && (mc_token[count] == '-' ||  mc_token[count] == '+'))
 		count++;
-	while (m_code && m_code[count] != '\0')
+	while (mc_token && mc_token[count] != '\0')
 	{
-		if (isdigit(m_code[count]) == 0)
+		if (isdigit(mc_token[count]) == 0)
 		{
 			fprintf(stderr, "L%u: usage: push integer\n", l_n);
 			exit(EXIT_FAILURE);
 		}
 		count++;
 	}
-	if (!m_code)
+	if (!mc_token)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", l_n);
 		exit(EXIT_FAILURE);
@@ -110,11 +111,10 @@ int check_integer(char *m_code, unsigned int l_n)
 }
 /**
  *s_func - searches for function related to the token
- *@mc_token: function command tokenized
  *@l_n: line where command is for possible error message
  *@head: head of the stack
  */
-void s_func(char *mc_token, unsigned int l_n, stack_t **head)
+void s_func(unsigned int l_n, stack_t **head)
 {
 	int count = 0;
 	instruction_t m_opcodes[] = { {"pall", mop_pall}, {NULL, NULL} };
