@@ -14,13 +14,12 @@ int main(int argc, char *argv[])
 	char *m_code = NULL;
 	unsigned int line_number = 0;
 
-	f_ = fopen(argv[1], "r");
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-
+	f_ = fopen(argv[1], "r");
 	if (!(f_) || f_ == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
