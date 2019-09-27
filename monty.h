@@ -58,5 +58,6 @@ void mop_swap(stack_t **head, unsigned int l_n);
 void mop_add(stack_t **head, unsigned int l_n);
 void mop_nop(stack_t **head, unsigned int l_n);
 void mop_sub(stack_t **head, unsigned int l_n);
+void mop_div(stack_t **head, unsigned int l_n);
 
 #endif

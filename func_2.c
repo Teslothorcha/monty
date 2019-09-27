@@ -22,7 +22,7 @@ void mop_pop(stack_t **head, unsigned int line_number)
 /**
  *mop_swap - swap top two elements of the stack
  *@head: head of the stack
- *@line_number: number where command is for possible error mesasge
+ *@l_n: number where command is for possible error mesasge
  */
 void mop_swap(stack_t **head, unsigned int l_n)
 {
@@ -30,7 +30,7 @@ void mop_swap(stack_t **head, unsigned int l_n)
 	int count = 0, to_a = 0, to_b = 0;
 
 	aux = *head;
-	while(aux)
+	while (aux)
 	{
 		aux = aux->next;
 		count++;
@@ -50,7 +50,7 @@ void mop_swap(stack_t **head, unsigned int l_n)
 /**
  *mop_add - adds top two elements of the stack
  *@head: head of the stack
- *@line_number: number where command is for possible error mesasge
+ *@l_n: number where command is for possible error mesasge
  */
 void mop_add(stack_t **head, unsigned int l_n)
 {
@@ -58,7 +58,7 @@ void mop_add(stack_t **head, unsigned int l_n)
 	int count = 0;
 
 	aux = *head;
-	while(aux)
+	while (aux)
 	{
 		aux = aux->next;
 		count++;
@@ -77,7 +77,7 @@ void mop_add(stack_t **head, unsigned int l_n)
 /**
  *mop_nop - does nothing at all
  *@head: head of the stack
- *@line_number: number where command is for possible error mesasge
+ *@l_n: number where command is for possible error mesasge
  */
 void mop_nop(stack_t **head, unsigned int l_n)
 {
@@ -87,7 +87,7 @@ void mop_nop(stack_t **head, unsigned int l_n)
 /**
  *mop_sub - substract top elemnt from second elemt in the stack
  *@head: head of the stack
- *@line_number: number where command is for possible error mesasge
+ *@l_n: number where command is for possible error mesasge
  */
 void mop_sub(stack_t **head, unsigned int l_n)
 {
@@ -95,7 +95,7 @@ void mop_sub(stack_t **head, unsigned int l_n)
 	int count = 0;
 
 	aux = *head;
-	while(aux)
+	while (aux)
 	{
 		aux = aux->next;
 		count++;
