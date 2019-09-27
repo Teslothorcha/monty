@@ -107,18 +107,19 @@ void mop_mod(stack_t **head, unsigned int l_n)
  */
 void mop_pchar(stack_t **head, unsigned int l_n)
 {
-	if ((*head)->n < 0 || (*head)->n > 127)
-	{
-		fprintf(stderr, "L%d: can't pchar, value out of range\n", l_n);
-		freezer(&*head);
-		exit(EXIT_FAILURE);
-	}
 	if (!(head) || !(*head))
 	{
 		fprintf(stderr, "L%d: can't pchar, stack empty\n", l_n);
 		freezer(&*head);
 		exit(EXIT_FAILURE);
 	}
+	if ((*head)->n < 0 || (*head)->n > 127)
+	{
+		fprintf(stderr, "L%d: can't pchar, value out of range\n", l_n);
+		freezer(&*head);
+		exit(EXIT_FAILURE);
+	}
+
 	printf("%c\n", (*head)->n);
 }
 /**
