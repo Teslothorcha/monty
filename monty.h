@@ -55,5 +55,6 @@ void freezer(stack_t **head);
 void mop_pint(stack_t **head, unsigned int line_number);
 void mop_pop(stack_t **head, unsigned int line_number);
 void mop_swap(stack_t **head, unsigned int l_n);
+void mop_add(stack_t **head, unsigned int l_n);
 
 #endif

@@ -47,3 +47,30 @@ void mop_swap(stack_t **head, unsigned int l_n)
 	aux->n = to_b;
 	(*head)->n = to_a;
 }
+/**
+ *mop_add - adds top two elements of the stack
+ *@head: head of the stack
+ *@line_number: number where command is for possible error mesasge
+ */
+void mop_add(stack_t **head, unsigned int l_n)
+{
+	stack_t *aux;
+	int count = 0;
+
+	aux = *head;
+	while(aux)
+	{
+		aux = aux->next;
+		count++;
+	}
+	if (count < 2)
+	{
+		fprintf(stderr, "L%d: can't add, stack too short\n", l_n);
+		exit(EXIT_FAILURE);
+	}
+	aux = *head;
+	aux = aux->next;
+	aux->n += ((*head)->n);
+	free(*head);
+	*head = aux;
+}
