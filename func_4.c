@@ -19,6 +19,6 @@ void mop_rotl(stack_t **head, unsigned int l_n)
 	aux->next = *head;
 	(*head)->next = NULL;
 	(*head)->prev = aux;
-	aux1 = NULL;
+	aux1->prev = NULL;
 	*head = aux1;
 }
