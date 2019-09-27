@@ -12,7 +12,9 @@ void mop_rotl(stack_t **head, unsigned int l_n)
 	(void) l_n;
 	aux = *head;
 	aux1 = (*head)->next;
-	if (!(*head) || !(*head)->next)
+	if (!(*head))
+		return;
+	if (!(*head)->next)
 		return;
 	while (aux->next)
 		aux = aux->next;
