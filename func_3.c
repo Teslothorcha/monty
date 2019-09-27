@@ -19,7 +19,7 @@ void mop_div(stack_t **head, unsigned int l_n)
 	}
 	if (count < 2 || !(*head) || !head)
 	{
-		fprintf(stderr, "L%d: can't div, stack too shor\n", l_n);
+		fprintf(stderr, "L%d: can't div, stack too short\n", l_n);
 		exit(EXIT_FAILURE);
 	}
 	if ((*head)->n == 0)
