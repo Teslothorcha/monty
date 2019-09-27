@@ -142,7 +142,7 @@ void s_func(unsigned int l_n, stack_t **head)
 		{"pchar", mop_pchar},
 		{"pstr", mop_pstr},
 		{"rotl", mop_rotl},
-		{"rotl", mop_rotr},
+		{"rotr", mop_rotr},
 		{NULL, NULL}
 	};
 
