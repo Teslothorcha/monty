@@ -21,6 +21,11 @@ void mop_div(stack_t **head, unsigned int l_n)
 		fprintf(stderr, "L%d: can't div, stack too shor\n", l_n);
 		exit(EXIT_FAILURE);
 	}
+	if ((*head)->n == 0)
+	{
+		fprintf(stderr, "L%d: division by zero\n", l_n);
+		exit(EXIT_FAILURE);
+	}
 	aux = *head;
 	aux = aux->next;
 	aux->n /= ((*head)->n);
