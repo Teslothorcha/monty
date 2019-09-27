@@ -49,6 +49,8 @@ void tokenizer(char *m_code, unsigned int l_n, stack_t **head, FILE *f_)
 	int n_num = 0;
 
 	mc_token = strtok(m_code, TOKDEL);
+	if (mc_token && mc_token[0] == '#')
+		mc_token = NULL;
 	if (mc_token && strcmp(mc_token, QUEUE) == 0)
 	{
 		status = 1;
