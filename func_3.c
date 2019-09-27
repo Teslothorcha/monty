@@ -130,7 +130,7 @@ void mop_pstr(stack_t **head, unsigned int l_n)
 
 	(void) l_n;
 	aux = *head;
-	while (aux->n > 0 && aux->n < 128 && aux)
+	while (aux && aux->n > 0 && aux->n < 128)
 	{
 		printf("%c", aux->n);
 		aux = aux->next;
