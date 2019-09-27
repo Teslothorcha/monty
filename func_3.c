@@ -112,7 +112,7 @@ void mop_pchar(stack_t **head, unsigned int l_n)
 		fprintf(stderr, "L%d: can't pchar, value out of range\n", l_n);
 		exit(EXIT_FAILURE);
 	}
-	if (!(*head) || !head)
+	if (!(*head) || !(head))
 	{
 		fprintf(stderr, "L%d: can't pchar, stack empty\n", l_n);
 		exit(EXIT_FAILURE);
