@@ -65,3 +65,38 @@ void mop_mul(stack_t **head, unsigned int l_n)
 	*head = aux;
 	(*head)->prev = NULL;
 }
+/**
+ *mop_mod - multiplies the second elemt in the stack by the top elemnt
+ *@head: head of the stack
+ *@l_n: number where command is for possible error mesasge
+ */
+void mop_mod(stack_t **head, unsigned int l_n)
+{
+	stack_t *aux;
+	int count = 0;
+	int mod = 0;
+
+	aux = *head;
+	while (aux)
+	{
+		aux = aux->next;
+		count++;
+	}
+	if (count < 2)
+	{
+		fprintf(stderr, "L%d: can't mod, stack too short\n", l_n);
+		exit(EXIT_FAILURE);
+	}
+	if ((*head)->n == 0)
+	{
+		fprintf(stderr, "L%d: division by zero\n", l_n);
+		exit(EXIT_FAILURE);
+	}
+	aux = *head;
+	aux = aux->next;
+	mod = aux->n % ((*head)->n);
+	aux->n = mod;
+	free(*head);
+	*head = aux;
+	(*head)->prev = NULL;
+}
