@@ -9,6 +9,7 @@ void mop_div(stack_t **head, unsigned int l_n)
 {
 	stack_t *aux;
 	int count = 0;
+	ind div = 0;
 
 	aux = *head;
 	while (aux)
@@ -28,7 +29,9 @@ void mop_div(stack_t **head, unsigned int l_n)
 	}
 	aux = *head;
 	aux = aux->next;
-	aux->n /= ((*head)->n);
+	div = aux->n / ((*head)->n);
+	aux->n = div;
 	free(*head);
 	*head = aux;
+	(*head)->prev = NULL;
 }
