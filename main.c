@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
 	stack_t *head = NULL;
 	char *m_code = NULL;
 	unsigned int line_number = 0;
+	int status = 0;
 
 	if (argc != 2)
 	{
@@ -28,7 +29,7 @@ int main(int argc, char *argv[])
 	while ((getline(&m_code, &sizze, f_)) != EOF)
 	{
 		line_number++;
-		tokenizer(m_code, line_number, &head, f_);
+		tokenizer(m_code, line_number, &head, f_, &status);
 	}
 	free(m_code);
 	freezer(&head);
@@ -40,12 +41,11 @@ int main(int argc, char *argv[])
  *@m_code: line of the document to get token from
  *@l_n: number of the line where the token belongs
  *@head: head of the stack
- *@f_: file descriptor to close
- *
+ *@f: file descriptor to close
+ *@s: status flag for queue and stack
  */
-void tokenizer(char *m_code, unsigned int l_n, stack_t **head, FILE *f_)
+void tokenizer(char *m_code, unsigned int l_n, stack_t **head, FILE *f, int *s)
 {
-	int status = 0;
 	int n_num = 0;
 
 	mc_token = strtok(m_code, TOKDEL);
@@ -53,12 +53,12 @@ void tokenizer(char *m_code, unsigned int l_n, stack_t **head, FILE *f_)
 		mc_token = NULL;
 	if (mc_token && strcmp(mc_token, QUEUE) == 0)
 	{
-		status = 1;
+		*s = 1;
 		mc_token = NULL;
 	}
 	else if (mc_token && strcmp(mc_token, STACK) == 0)
 	{
-		status = 0;
+		*s = 0;
 		mc_token = NULL;
 	}
 	while (mc_token)
@@ -66,12 +66,12 @@ void tokenizer(char *m_code, unsigned int l_n, stack_t **head, FILE *f_)
 		if (strcmp(mc_token, "push") == 0)
 		{
 			mc_token = strtok(NULL, TOKDEL);
-			if (check_integer(head, l_n, m_code, f_))
+			if (check_integer(head, l_n, m_code, f))
 			{
 				n_num = atoi(mc_token);
-				if (status == 0)
+				if (*s == 0)
 					push_stack(head, n_num);
-				else if (status == 1)
+				else if (*s == 1)
 					push_queue(head, n_num);
 			}
 			mc_token = NULL;

@@ -32,18 +32,27 @@ void push_queue(stack_t **head, int num)
 	stack_t *new = NULL, *aux = NULL;
 
 	new = malloc(sizeof(stack_t));
-
-	aux = *head;
-	while (aux)
+	if (!new)
 	{
-		if (aux->next != NULL)
-			aux = aux->next;
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
 	}
 	new->n = num;
+	aux = *head;
+	if (!(*head))
+	{
+		*head = new;
+		(*head)->next = NULL;
+		(*head)->prev = NULL;
+		return;
+	}
+	while (aux->next)
+	{
+		aux = aux->next;
+	}
 	new->prev = aux;
 	new->next = NULL;
-	if (aux != NULL)
-		aux->next = new;
+	aux->next = new;
 }
 /**
  *mop_pall - prints number of stack nodes
