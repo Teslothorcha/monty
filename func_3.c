@@ -100,3 +100,22 @@ void mop_mod(stack_t **head, unsigned int l_n)
 	*head = aux;
 	(*head)->prev = NULL;
 }
+/**
+ *mop_pchar - prints integer ascii value
+ *@head: head of the stack
+ *@l_n: number where command is for possible error mesasge
+ */
+void mop_pchar(stack_t **head, unsigned int l_n)
+{
+	if ((*head)->n < 0 || (*head)->n > 127)
+	{
+		fprintf(stderr, "L%d: can't pchar, value out of range\n", l_n);
+		exit(EXIT_FAILURE);
+	}
+	if (!(*head) || !head)
+	{
+		fprintf(stderr, "L%d: can't pchar, stack empty\n", l_n);
+		exit(EXIT_FAILURE);
+	}
+	printf("%c\n", (*head)->n);
+}
