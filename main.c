@@ -132,6 +132,7 @@ void s_func(unsigned int l_n, stack_t **head)
 		{"pop", mop_pop},
 		{"swap", mop_swap},
 		{"add", mop_add},
+		{"nop", mop_nop},
 		{NULL, NULL}
 	};
 

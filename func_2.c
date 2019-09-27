@@ -74,3 +74,13 @@ void mop_add(stack_t **head, unsigned int l_n)
 	free(*head);
 	*head = aux;
 }
+/**
+ *mop_nop - does nothing at all
+ *@head: head of the stack
+ *@line_number: number where command is for possible error mesasge
+ */
+void mop_nop(stack_t **head, unsigned int l_n)
+{
+	(void) head;
+	(void) l_n;
+}
