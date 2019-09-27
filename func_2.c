@@ -84,3 +84,30 @@ void mop_nop(stack_t **head, unsigned int l_n)
 	(void) head;
 	(void) l_n;
 }
+/**
+ *mop_sub - substract top elemnt from second elemt in the stack
+ *@head: head of the stack
+ *@line_number: number where command is for possible error mesasge
+ */
+void mop_sub(stack_t **head, unsigned int l_n)
+{
+	stack_t *aux;
+	int count = 0;
+
+	aux = *head;
+	while(aux)
+	{
+		aux = aux->next;
+		count++;
+	}
+	if (count < 2)
+	{
+		fprintf(stderr, "L%d: can't sub, stack too short\n", l_n);
+		exit(EXIT_FAILURE);
+	}
+	aux = *head;
+	aux = aux->next;
+	aux->n -= ((*head)->n);
+	free(*head);
+	*head = aux;
+}
