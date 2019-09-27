@@ -141,6 +141,7 @@ void s_func(unsigned int l_n, stack_t **head)
 		{"mod", mop_mod},
 		{"pchar", mop_pchar},
 		{"pstr", mop_pstr},
+		{"rotl", mop_rotl},
 		{NULL, NULL}
 	};
 

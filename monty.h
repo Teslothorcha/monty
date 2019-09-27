@@ -63,5 +63,6 @@ void mop_mul(stack_t **head, unsigned int l_n);
 void mop_mod(stack_t **head, unsigned int l_n);
 void mop_pchar(stack_t **head, unsigned int l_n);
 void mop_pstr(stack_t **head, unsigned int l_n);
+void mop_rotl(stack_t **head, unsigned int l_n);
 
 #endif
