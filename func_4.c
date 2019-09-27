@@ -42,8 +42,9 @@ void mop_rotr(stack_t **head, unsigned int l_n)
 		return;
 	while (aux->next)
 		aux = aux->next;
-	aux1->prev = aux;
-	aux->prev = NULL;
+	aux->prev->next = NULL;
 	aux->next = aux1;
+	aux->prev = NULL;
+	aux1->prev = aux;
 	*head = aux;
 }
